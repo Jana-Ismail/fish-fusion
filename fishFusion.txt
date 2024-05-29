@@ -1,0 +1,15 @@
+title This is a title
+
+    participant main
+    participant restaurant
+    participant fishMonger
+    participant fishingBoat
+
+main->restaurant:call fishMenu(dailyPriceLimit) to get menu data
+restaurant->fishMonger: call mongerInventory() to get mongerInventory data
+fishMonger->fishingBoat: call boatInventory() to get dailyCatch data
+fishingBoat->fishMonger: return boatInventory array
+fishMonger->restaurant: return mongerInventory array
+    restaurant->restaurant: call chefInventory(maxFishPrice)
+    restaurant-->>main: return menuHTML
+note right of main:Display menu HTML
